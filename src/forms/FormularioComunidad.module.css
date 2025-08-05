@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 500px;
-  margin: 20px auto;
+  width: 100%;
+  max-width: 400px;  /* 👈 más compacto */
+  margin: 0 auto;
   padding: 20px;
   background: white;
   border: 2px solid var(--morado);
@@ -16,6 +17,7 @@
   flex-direction: column;
   font-weight: bold;
   color: var(--morado);
+  font-size: 14px;
 }
 
 .input,
@@ -29,7 +31,7 @@
 }
 
 .textarea {
-  min-height: 80px;
+  min-height: 60px;  /* 👈 menos alto por defecto */
   resize: vertical;
 }
 
@@ -39,11 +41,36 @@
   border: none;
   padding: 12px;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
   transition: background 0.2s ease-in-out;
 }
 
 .button:hover {
   background: var(--morado-hover);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form {
+    max-width: 90%;  /* 👈 ocupa casi toda la pantalla en móvil */
+    padding: 15px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
 }

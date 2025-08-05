@@ -10,18 +10,29 @@ function Home() {
     setMostrarFormulario(!mostrarFormulario);
   };
 
-  return (
-    <div className={styles.container}>
+return (
+  <>
+    <div className="">
       <h2 className={styles.title}>Bienvenido a El Diegoncurso</h2>
-      <p className={styles.subtitle}>Participa con tus preguntas y únete a la diversión 🎮</p>
+    </div>
 
-      <button className={styles.button} onClick={toggleFormulario}>
-        {mostrarFormulario ? "Cerrar formulario" : "➕ Añadir pregunta"}
-      </button>
+    <div className={styles.container}>
+      {/* Columna izquierda */}
+      <div className={styles.left}>
+        <div className={styles.leftTop}>
+          <p className={styles.subtitle}>
+            Participa con tus preguntas y únete a la diversión 
+          </p>
 
-      <h3 className={styles.subtitle}>Mira el directo en tiempo real:</h3>
+          <button className={styles.button} onClick={toggleFormulario}>
+            {mostrarFormulario ? "Cerrar formulario" : "➕ Añadir pregunta"}
+          </button>
+        </div>
+      </div>
 
-      <div className={styles.streamWrapper}>
+      {/* Columna derecha */}
+      <div className={styles.right}>
+        <p className={styles.streamTitle}>Mira el directo en tiempo real 🎥</p>
         <iframe
           className={styles.stream}
           src="https://player.twitch.tv/?channel=don_diegons&parent=localhost"
@@ -30,6 +41,7 @@ function Home() {
         ></iframe>
       </div>
 
+      {/* Modal del formulario */}
       {mostrarFormulario && (
         <div
           className={modalStyles.overlay}
@@ -47,7 +59,8 @@ function Home() {
         </div>
       )}
     </div>
-  );
+  </>
+);
 }
 
 export default Home;
