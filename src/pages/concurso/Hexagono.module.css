@@ -1,0 +1,35 @@
+.hexagono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 2 / 1;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background: #eee;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+}
+
+.pregunta {
+  width: 100%;
+  font-size: 18px;
+  background: var(--morado);
+  color: white;
+}
+
+.seleccionado {
+  background: #ffcc00;
+  color: black;
+}
+
+.correcto {
+  background: green;
+  color: white;
+}
+
+.incorrecto {
+  background: crimson;
+  color: white;
+}

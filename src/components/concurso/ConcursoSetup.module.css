@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  padding: 20px;
+  background: var(--gris-fondo);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.column {
+  background: white;
+  border: 2px solid var(--morado);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.option {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.fullWidth {
+  grid-column: span 3;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.startBtn {
+  background: var(--morado);
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.startBtn:hover {
+  background: var(--morado-hover);
+}
