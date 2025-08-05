@@ -1,7 +1,15 @@
 import { useState } from "react";
+import usuarios from "../data/usuarios";
+import styles from "./Auth.module.css";
 
 function Register() {
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [form, setForm] = useState({
+    nombre: "",
+    apellidos: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
@@ -11,35 +19,96 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Aquí podríamos enviar la info a un backend o guardarla en localStorage
-    console.log("Nuevo registro pendiente:", form);
+    const existe = usuarios.find((u) => u.email === form.email);
+    if (existe) {
+      setError("Este email ya está registrado.");
+      return;
+    }
+
+    const nuevoUsuario = {
+      id: Date.now(),
+      ...form,
+      rol: "usuario",
+      aprobado: false,
+    };
+
+    usuarios.push(nuevoUsuario);
+    console.log("Nuevo registro pendiente:", nuevoUsuario);
 
     setSuccess(true);
-    setForm({ username: "", password: "" });
+    setError("");
+    setForm({ nombre: "", apellidos: "", email: "", password: "" });
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Registro</h2>
-      {success ? (
-        <p style={{ color: "green" }}>
-          Registro enviado. Un administrador debe aprobar tu cuenta.
+    <div className={styles.authContainer}>
+      <div className={styles.authBox}>
+        <h2 className={styles.title}>Registro</h2>
+
+        {success ? (
+          <p className={styles.success}>
+            Registro enviado. Un administrador revisará tu solicitud.
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <label className={styles.label}>
+              Nombre:
+              <input
+                className={styles.input}
+                type="text"
+                name="nombre"
+                value={form.nombre}
+                onChange={handleChange}
+                required
+              />
+            </label>
+
+            <label className={styles.label}>
+              Apellidos:
+              <input
+                className={styles.input}
+                type="text"
+                name="apellidos"
+                value={form.apellidos}
+                onChange={handleChange}
+                required
+              />
+            </label>
+
+            <label className={styles.label}>
+              Email:
+              <input
+                className={styles.input}
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </label>
+
+            <label className={styles.label}>
+              Contraseña:
+              <input
+                className={styles.input}
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+            </label>
+
+            {error && <p className={styles.error}>{error}</p>}
+
+            <button type="submit" className={styles.button}>Registrarse</button>
+          </form>
+        )}
+
+        <p className={styles.link}>
+          ¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a>
         </p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Usuario:
-            <input type="text" name="username" value={form.username} onChange={handleChange} required />
-          </label>
-          <br />
-          <label>
-            Contraseña:
-            <input type="password" name="password" value={form.password} onChange={handleChange} required />
-          </label>
-          <br />
-          <button type="submit">Registrarse</button>
-        </form>
-      )}
+      </div>
     </div>
   );
 }

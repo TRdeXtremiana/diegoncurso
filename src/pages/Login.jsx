@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import usuarios from "../data/usuarios";
+import { useAuth } from "../context/AuthContext";
+import styles from "./Auth.module.css";
 
 function Login() {
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -13,41 +15,58 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = usuarios.find(
-      (u) => u.username === form.username && u.password === form.password
-    );
+    const user = login(form.email, form.password);
 
     if (!user) {
-      setError("Usuario o contraseña incorrectos");
-    } else if (!user.aprobado) {
-      setError("Tu cuenta está pendiente de aprobación por un administrador.");
+      setError("Email o contraseña incorrectos, o cuenta no aprobada.");
     } else {
       if (user.rol === "admin") {
         navigate("/admin");
       } else {
-        navigate("/"); // si quieres que los usuarios normales puedan loguearse
+        navigate("/");
       }
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Usuario:
-          <input type="text" name="username" value={form.username} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Contraseña:
-          <input type="password" name="password" value={form.password} onChange={handleChange} required />
-        </label>
-        <br />
-        <button type="submit">Entrar</button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <p>¿No tienes cuenta? <a href="/register">Regístrate aquí</a></p>
+    <div className={styles.authContainer}>
+      <div className={styles.authBox}>
+        <h2 className={styles.title}>Login</h2>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <label className={styles.label}>
+            Email:
+            <input
+              className={styles.input}
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+          </label>
+
+          <label className={styles.label}>
+            Contraseña:
+            <input
+              className={styles.input}
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </label>
+
+          {error && <p className={styles.error}>{error}</p>}
+
+          <button type="submit" className={styles.button}>
+            Entrar
+          </button>
+        </form>
+        <p className={styles.link}>
+          ¿No tienes cuenta? <a href="/register">Regístrate aquí</a>
+        </p>
+      </div>
     </div>
   );
 }

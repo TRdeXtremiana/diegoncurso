@@ -1,18 +1,15 @@
 const usuarios = [
   {
     id: 1,
-    username: "admin",
-    password: "1234",   // en real iría encriptado
+    nombre: "Diego",
+    apellidos: "Extremiana",
+    email: "dextremiana1998@gmail.com",
+    password: "Vidcorn1998",
     rol: "admin",
     aprobado: true,
-  },
-  {
-    id: 2,
-    username: "usuario_demo",
-    password: "demo",
-    rol: "usuario",
-    aprobado: false, // pendiente de aprobación
   }
+  // Nuevos registros se irán añadiendo aquí
 ];
 
 export default usuarios;
+

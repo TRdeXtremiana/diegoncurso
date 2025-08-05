@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  height: calc(100vh - 120px); /* espacio para header y footer */
+}
+
+/* Barra lateral fija */
+.sidebar {
+  position: fixed;
+  top: 75px;    /* altura del header */
+  bottom: 40px; /* altura del footer */
+  left: 0;
+  width: 220px;
+
+  background: var(--morado);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  gap: 10px;
+
+  overflow-y: auto; /* si hay muchos botones */
+}
+
+.sidebar button {
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar button:hover {
+  background: var(--morado-hover);
+}
+
+.active {
+  background: white !important;
+  color: var(--morado) !important;
+  font-weight: bold;
+}
+
+/* Área de contenido, desplazada por la sidebar */
+.content {
+  flex: 1;
+  margin-left: 220px; /* deja sitio fijo para la sidebar */
+  background: var(--gris-fondo);
+  padding: 20px;
+  overflow-y: auto;
+}
