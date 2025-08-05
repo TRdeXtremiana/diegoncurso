@@ -1,0 +1,43 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.circulo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #aaa;
+  transition: all 0.2s ease;
+}
+
+/* Colores según estado */
+.pendiente {
+  background: #ddd;
+  color: #333;
+}
+
+.actual {
+  background: #f1c40f; /* Amarillo */
+  color: black;
+  border-color: #f39c12;
+}
+
+.correcto {
+  background: #2ecc71; /* Verde */
+  color: white;
+  border-color: #27ae60;
+}
+
+.incorrecto {
+  background: #e74c3c; /* Rojo */
+  color: white;
+  border-color: #c0392b;
+}
