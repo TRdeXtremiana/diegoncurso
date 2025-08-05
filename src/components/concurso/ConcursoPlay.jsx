@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hexagono from "../../pages/concurso/Hexagono";
 import BarraProgreso from "../../pages/concurso/BarraProgreso";
 import Comodines from "../../pages/concurso/Comodines";
+import styles from "./ConcursoPlay.module.css";
 
 
 function ConcursoPlay({ preguntas, onReiniciar }) {
@@ -22,39 +23,63 @@ function ConcursoPlay({ preguntas, onReiniciar }) {
   };
 
   return (
-    <div>
-      <BarraProgreso actual={indice + 1} total={preguntas.length} />
+<div className={styles.contenedor}>
+  {/* Barra superior */}
+  <div className={styles.topBar}>
+    <div className={styles.leftControls}>
+      <button onClick={onReiniciar} className={styles.botonSecundario}>
+        Terminar concurso
+      </button>
+    </div>
 
-      <Hexagono tipo="pregunta" texto={preguntaActual.pregunta} />
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "20px" }}>
-        {preguntaActual.respuestas.map((r, i) => (
-          <Hexagono
-            key={i}
-            tipo="respuesta"
-            texto={r}
-            seleccionado={seleccion === i}
-            esCorrecta={preguntaActual.correcta === i}
-            resuelta={resuelta}
-            onClick={() => !resuelta && setSeleccion(i)}
-          />
-        ))}
-      </div>
-
-      <div style={{ marginTop: "20px" }}>
-        {!resuelta && seleccion !== null && (
-          <button onClick={resolver}>Resolver</button>
-        )}
-        {resuelta && indice < preguntas.length - 1 && (
-          <button onClick={siguiente}>Siguiente pregunta</button>
-        )}
-        {resuelta && indice === preguntas.length - 1 && (
-          <button onClick={onReiniciar}>Reiniciar concurso</button>
-        )}
-      </div>
-
+    <div className={styles.rightControls}>
       <Comodines />
     </div>
+  </div>
+
+  {/* Progreso */}
+  <BarraProgreso actual={indice + 1} total={preguntas.length} />
+
+  {/* Pregunta */}
+  <div className={styles.preguntaBox}>
+    {preguntaActual.pregunta}
+  </div>
+
+  {/* Respuestas */}
+  <div className={styles.respuestasContainer}>
+    {preguntaActual.respuestas.map((r, i) => (
+      <div
+        key={i}
+        className={`${styles.respuestaBox} 
+          ${seleccion === i ? styles.seleccionada : ""} 
+          ${resuelta && preguntaActual.correcta === i ? styles.correcta : ""} 
+          ${resuelta && seleccion === i && preguntaActual.correcta !== i ? styles.incorrecta : ""}`}
+        onClick={() => !resuelta && setSeleccion(i)}
+      >
+        <span className={styles.respuestaLetra}>
+          {String.fromCharCode(65 + i)}:
+        </span>
+        <span>{r}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Botón siguiente */}
+  <div className={styles.bottomControls}>
+    {!resuelta && seleccion !== null && (
+      <button onClick={resolver} className={styles.botonAccion}>
+        Resolver
+      </button>
+    )}
+    {resuelta && indice < preguntas.length - 1 && (
+      <button onClick={siguiente} className={styles.botonAccion}>
+        Siguiente
+      </button>
+    )}
+  </div>
+</div>
+
+
   );
 }
 

@@ -1,0 +1,121 @@
+.contenedor {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.leftControls {
+  margin-left: 20px;
+}
+
+.rightControls {
+  margin-right: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Pregunta estilo “cinturón” */
+.preguntaBox {
+  width: 80%;
+  background: var(--morado);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 12px;
+  font-size: 18px;
+}
+
+/* Contenedor de respuestas (2 arriba, 2 abajo) */
+/* Contenedor de respuestas */
+.respuestasContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  margin-top: 20px;
+}
+
+/* Caja de respuesta */
+.respuestaBox {
+  background: #f9f9f9;
+  color: black;
+  padding: 15px 20px;
+  border: 3px solid var(--morado);
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.2s ease;
+
+  /* 👇 Tamaño fijo */
+  height: 70px;          /* todas iguales de alto */
+  min-width: 320px;      /* ancho mínimo */
+  max-width: 100%;       /* que no rompa en móvil */
+  box-sizing: border-box;
+
+  /* Ajuste del texto */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Hover */
+.respuestaBox:hover {
+  background: #eee;
+}
+
+/* Estados */
+.seleccionada {
+  background: #ffd700;
+  color: black;
+}
+
+.correcta {
+  background: #2ecc71;
+  color: white;
+}
+
+.incorrecta {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Letra (A:, B:, C:, D:) */
+.respuestaLetra {
+  font-weight: bold;
+  color: var(--morado);
+}
+
+/* Botones */
+.botonAccion {
+  background: var(--morado);
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.botonSecundario {
+  background: white;
+  border: 2px solid var(--morado);
+  color: var(--morado);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}

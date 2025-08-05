@@ -1,21 +1,40 @@
-function Comodines() {
+import { useState, useEffect } from "react";
+import styles from "./Comodines.module.css";
+
+function Comodines({ concursoTerminado }) {
   const comodines = ["📞", "👥", "⏱️"]; // llamada, público, 30s
+  const [usados, setUsados] = useState([false, false, false]);
+
+  // Marcar comodín como usado
+  const handleClick = (index) => {
+    if (!usados[index]) {
+      const nuevos = [...usados];
+      nuevos[index] = true;
+      setUsados(nuevos);
+    }
+  };
+
+  // Reset cuando acaba el concurso
+  useEffect(() => {
+    if (concursoTerminado) {
+      setUsados([false, false, false]);
+    }
+  }, [concursoTerminado]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "20px" }}>
+    <div className={styles.comodinesContainer}>
       {comodines.map((c, i) => (
-        <button
-          key={i}
-          style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-        >
-          {c}
-        </button>
+        <div key={i} className={styles.comodinWrapper}>
+          <button
+            onClick={() => handleClick(i)}
+            className={`${styles.comodinButton} ${usados[i] ? styles.comodinUsado : ""}`}
+          >
+            {c}
+          </button>
+
+          {/* Prohibición encima si está usado */}
+          {usados[i] && <span className={styles.prohibido}>🚫</span>}
+        </div>
       ))}
     </div>
   );

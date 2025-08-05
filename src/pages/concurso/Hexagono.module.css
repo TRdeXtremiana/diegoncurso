@@ -1,15 +1,17 @@
 .hexagono {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 2 / 1;
+  width: 200px; /* más estrecho */
+  height: 100px; /* más fino */
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  background: #eee;
-  color: black;
-  cursor: pointer;
+  background: #f9f9f9;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
-  padding: 20px;
   text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .pregunta {
@@ -20,7 +22,7 @@
 }
 
 .seleccionado {
-  background: #ffcc00;
+  background: #ffc400;
   color: black;
 }
 
