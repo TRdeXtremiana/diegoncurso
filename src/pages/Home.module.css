@@ -1,0 +1,58 @@
+.container {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--morado);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.button {
+  background: var(--morado);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: background 0.2s ease-in-out;
+}
+
+.button:hover {
+  background: var(--morado-hover);
+}
+
+.streamWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.stream {
+  border: none;
+  width: 100%;
+  max-width: 800px;
+  height: 350px; /* más bajo */
+}
+
+@media (max-width: 768px) {
+  .stream {
+    height: 220px; /* más compacto en móvil */
+  }
+}
+

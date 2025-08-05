@@ -1,27 +1,36 @@
 :root {
   --morado: #6A1B9A;
   --morado-hover: #8E24AA;
-  --gris-fondo: #e6e6e6;
+  --gris-fondo: #f0f0f5;
   --texto: #222;
 }
 
-html, body, #root, .app-container {
+html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--gris-fondo);
   color: var(--texto);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* 🚫 eliminamos scroll global */
 }
 
-/* Flexbox para que header y footer estén fijos */
 .app-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .main-content {
   flex: 1;
-  margin-bottom: 50px;
+  margin-top: 75px;   /* altura del header */
+  margin-bottom: 40px; /* altura del footer */
   padding: 20px;
+
+  /* 🚫 eliminamos scroll aquí también */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centramos verticalmente */
 }
