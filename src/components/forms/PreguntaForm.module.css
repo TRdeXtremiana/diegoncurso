@@ -1,0 +1,72 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dos columnas */
+  padding: 20px;
+  background: white;
+  border: 2px solid var(--morado);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Que algunos elementos ocupen ambas columnas */
+.fullWidth {
+  grid-column: span 2;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: var(--morado);
+  font-size: 14px;
+}
+
+.input,
+.textarea,
+.select {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.respuestaRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.radio {
+  accent-color: var(--morado);
+}
+
+.button {
+  background: var(--morado);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  margin-top: 15px;
+  grid-column: span 2; /* botón ocupa todo el ancho */
+  justify-self: start;
+}
+
+.button:hover {
+  background: var(--morado-hover);
+}

@@ -1,0 +1,101 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* ocupa todo el espacio del content */
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* evita que sobresalga */
+}
+
+.form {
+  flex: 1;
+  overflow-y: auto; /* permite scroll interno SOLO si de verdad es necesario */
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  border: 2px solid var(--morado);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.row > div {
+  flex: 1;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: var(--morado);
+  font-size: 14px;
+}
+
+.input,
+.textarea,
+.select {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border: 1px solid var(--morado);
+}
+
+.textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.respuestaRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.radio {
+  accent-color: var(--morado);
+}
+
+.button {
+  background: var(--morado);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  align-self: flex-start;
+}
+
+.button:hover {
+  background: var(--morado-hover);
+}
+
+.preview {
+  margin-top: 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.preview h3 {
+  color: var(--morado);
+  margin-bottom: 10px;
+}
