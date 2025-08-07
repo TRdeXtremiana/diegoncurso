@@ -1,15 +1,55 @@
-import { useState } from "react";
-import Hexagono from "../../pages/concurso/Hexagono";
+import { useState, useEffect } from "react";
+// import Hexagono from "../../pages/concurso/Hexagono";
 import BarraProgreso from "../../pages/concurso/BarraProgreso";
 import Comodines from "../../pages/concurso/Comodines";
 import styles from "./ConcursoPlay.module.css";
 
 
-function ConcursoPlay({ preguntas, onReiniciar }) {
+function ConcursoPlay({ preguntas, onReiniciar, loading, error }) {
   const [indice, setIndice] = useState(0);
   const [seleccion, setSeleccion] = useState(null);
   const [resuelta, setResuelta] = useState(false);
-  const [resultados, setResultados] = useState(Array(preguntas.length).fill(null));
+  const [resultados, setResultados] = useState([]);
+  
+  // Inicializar resultados cuando las preguntas se cargan
+  useEffect(() => {
+    if (preguntas && preguntas.length > 0) {
+      setResultados(Array(preguntas.length).fill(null));
+    }
+  }, [preguntas]);
+
+  // Si no hay preguntas o están cargando, mostrar un mensaje
+  if (loading) {
+    return (
+      <div className={styles.contenedor}>
+        <div className={styles.cargando}>Cargando preguntas...</div>
+      </div>
+    );
+  }
+
+  // Si hay un error, mostrar un mensaje
+  if (error) {
+    return (
+      <div className={styles.contenedor}>
+        <div className={styles.error}>{error}</div>
+        <button onClick={onReiniciar} className={styles.botonSecundario}>
+          Volver al inicio
+        </button>
+      </div>
+    );
+  }
+
+  // Si no hay preguntas, mostrar un mensaje
+  if (!preguntas || preguntas.length === 0) {
+    return (
+      <div className={styles.contenedor}>
+        <div className={styles.error}>No hay preguntas disponibles</div>
+        <button onClick={onReiniciar} className={styles.botonSecundario}>
+          Volver al inicio
+        </button>
+      </div>
+    );
+  }
 
   const preguntaActual = preguntas[indice];
 

@@ -1,0 +1,138 @@
+.debug-panel {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 350px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  border-top-left-radius: 8px;
+  font-family: monospace;
+  font-size: 12px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: height 0.3s ease;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.debug-panel.hidden {
+  height: 30px;
+}
+
+.debug-panel.visible {
+  height: auto;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.debug-header {
+  padding: 8px 12px;
+  background-color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.debug-icon {
+  margin-right: 8px;
+}
+
+.debug-title {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.debug-count {
+  background-color: #f44336;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.debug-content {
+  padding: 10px;
+  overflow-y: auto;
+  max-height: calc(80vh - 30px);
+}
+
+.debug-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.debug-controls button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.debug-controls button:hover {
+  background-color: #777;
+}
+
+.debug-errors {
+  margin-top: 10px;
+}
+
+.debug-error {
+  background-color: rgba(244, 67, 54, 0.2);
+  padding: 8px;
+  margin-bottom: 8px;
+  border-left: 3px solid #f44336;
+  border-radius: 2px;
+}
+
+.error-time {
+  color: #aaa;
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.error-context {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.error-message {
+  color: #fff;
+  word-break: break-word;
+}
+
+.debug-more {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.debug-no-errors {
+  color: #4caf50;
+  text-align: center;
+  padding: 10px;
+}
+
+.debug-info {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #555;
+}
+
+.debug-info h4 {
+  color: #2196f3;
+  margin-bottom: 8px;
+}
+
+.debug-info div {
+  margin-bottom: 5px;
+  color: #ddd;
+  font-size: 11px;
+}

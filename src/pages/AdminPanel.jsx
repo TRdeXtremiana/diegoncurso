@@ -5,6 +5,7 @@ import UsuariosPendientes from "./admin/UsuariosPendientes";
 import PreguntasPendientes from "./admin/PreguntasPendientes";
 import IntroduccionDirecta from "./admin/IntroduccionDirecta";
 import InicioConcurso from "./admin/InicioConcurso";
+import ListaPreguntas from "./admin/ListaPreguntas";
 
 function AdminPanel() {
   const [panel, setPanel] = useState("usuarios");
@@ -31,6 +32,13 @@ function AdminPanel() {
           ✍️ Introducción directa
         </button>
         <button
+          className={panel === "listaPreguntas" ? styles.active : ""}
+          onClick={() => setPanel("listaPreguntas")}
+        >
+          📚 Todas las preguntas
+        </button>
+
+        <button
           className={panel === "concurso" ? styles.active : ""}
           onClick={() => setPanel("concurso")}
         >
@@ -42,6 +50,7 @@ function AdminPanel() {
         {panel === "usuarios" && <UsuariosPendientes />}
         {panel === "preguntas" && <PreguntasPendientes />}
         {panel === "introduccion" && <IntroduccionDirecta />}
+        {panel === "listaPreguntas" && <ListaPreguntas />}
         {panel === "concurso" && <InicioConcurso />}
       </main>
     </div>

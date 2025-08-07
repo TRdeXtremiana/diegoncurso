@@ -103,3 +103,63 @@
 .cancelBtn:hover {
   background: #ddd;
 }
+
+/* Estilos para los botones de acción en la tabla */
+.approveBtn, .rejectBtn, .editBtn {
+  margin-right: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.approveBtn {
+  background-color: #e6f7e6;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.approveBtn:hover {
+  background-color: #c8e6c9;
+}
+
+.rejectBtn {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+.rejectBtn:hover {
+  background-color: #ffcdd2;
+}
+
+.editBtn {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #bbdefb;
+}
+
+.editBtn:hover {
+  background-color: #bbdefb;
+}
+
+/* Spinner para los botones */
+.spinnerSmall {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: spin 0.8s linear infinite;
+  margin-right: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

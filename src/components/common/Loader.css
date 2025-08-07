@@ -1,0 +1,122 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.loader-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+}
+
+.loader-spinner {
+  display: inline-block;
+  position: relative;
+}
+
+/* Tamaños del loader */
+.loader-small .loader-spinner {
+  width: 30px;
+  height: 30px;
+}
+
+.loader-medium .loader-spinner {
+  width: 50px;
+  height: 50px;
+}
+
+.loader-large .loader-spinner {
+  width: 80px;
+  height: 80px;
+}
+
+/* Animación del spinner */
+.loader-spinner div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  margin: 10%;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: loader-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+/* Colores del loader */
+.loader-primary .loader-spinner div {
+  border-color: #2196f3 transparent transparent transparent;
+}
+
+.loader-secondary .loader-spinner div {
+  border-color: #757575 transparent transparent transparent;
+}
+
+.loader-success .loader-spinner div {
+  border-color: #4caf50 transparent transparent transparent;
+}
+
+.loader-danger .loader-spinner div {
+  border-color: #f44336 transparent transparent transparent;
+}
+
+.loader-warning .loader-spinner div {
+  border-color: #ff9800 transparent transparent transparent;
+}
+
+/* Animación de los elementos del spinner */
+.loader-spinner div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loader-spinner div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loader-spinner div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loader-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Texto del loader */
+.loader-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.loader-small .loader-text {
+  font-size: 12px;
+}
+
+.loader-large .loader-text {
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .loader-fullscreen .loader-spinner {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .loader-fullscreen .loader-text {
+    font-size: 14px;
+  }
+}

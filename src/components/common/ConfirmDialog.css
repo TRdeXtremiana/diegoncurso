@@ -1,0 +1,144 @@
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.confirm-dialog {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  padding: 0;
+  animation: scaleIn 0.2s ease;
+  overflow: hidden;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
+.confirm-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.confirm-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.confirm-content {
+  padding: 20px;
+}
+
+.confirm-message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  gap: 10px;
+}
+
+.confirm-cancel {
+  background-color: #f5f5f5;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirm-cancel:hover {
+  background-color: #e0e0e0;
+}
+
+.confirm-button {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: white;
+}
+
+/* Tipos de confirmación */
+.confirm-danger .confirm-title {
+  color: #d32f2f;
+}
+
+.confirm-warning .confirm-title {
+  color: #f57c00;
+}
+
+.confirm-info .confirm-title {
+  color: #1976d2;
+}
+
+.confirm-danger-button {
+  background-color: #d32f2f;
+}
+
+.confirm-danger-button:hover {
+  background-color: #b71c1c;
+}
+
+.confirm-warning-button {
+  background-color: #f57c00;
+}
+
+.confirm-warning-button:hover {
+  background-color: #e65100;
+}
+
+.confirm-info-button {
+  background-color: #1976d2;
+}
+
+.confirm-info-button:hover {
+  background-color: #0d47a1;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .confirm-dialog {
+    max-width: 90%;
+    margin: 0 15px;
+  }
+  
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .confirm-button,
+  .confirm-cancel {
+    width: 100%;
+    padding: 12px;
+  }
+}

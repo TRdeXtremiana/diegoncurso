@@ -1,12 +1,14 @@
 import { useState } from "react";
 import categorias from "../../data/categorias";
-import preguntasData from "../../data/preguntas";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import styles from "./ConcursoSetup.module.css";
+import { usePreguntas } from "../../context/PreguntasContext";
 
 function ConcursoSetup({ onIniciar }) {
+  const { preguntas, loading, error } = usePreguntas();
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [etiquetasSeleccionadas, setEtiquetasSeleccionadas] = useState([]);
+  const [mensajeError, setMensajeError] = useState("");
 
   const toggleCategoria = (categoria) => {
     setCategoriasSeleccionadas((prev) =>
@@ -26,16 +28,27 @@ function ConcursoSetup({ onIniciar }) {
   };
 
   const iniciarConcurso = () => {
-    const preguntasFiltradas = preguntasData.filter(
+    if (categoriasSeleccionadas.length === 0 || etiquetasSeleccionadas.length === 0) {
+      setMensajeError("Debes seleccionar al menos una categoría y una etiqueta");
+      return;
+    }
+
+    const preguntasFiltradas = preguntas.filter(
       (p) =>
         p.estado === "aprobado" &&
         categoriasSeleccionadas.includes(p.categoria) &&
         etiquetasSeleccionadas.includes(p.etiqueta)
     );
 
+    if (preguntasFiltradas.length === 0) {
+      setMensajeError("No hay preguntas disponibles con los filtros seleccionados");
+      return;
+    }
+
+    setMensajeError("");
     const seleccionadas = preguntasFiltradas
       .sort(() => Math.random() - 0.5)
-      .slice(0, 12);
+      .slice(0, Math.min(12, preguntasFiltradas.length));
 
     onIniciar(seleccionadas);
   };
@@ -50,8 +63,27 @@ function ConcursoSetup({ onIniciar }) {
 
   const colors = ["#6a0dad", "#b14aed", "#ffcc00", "#00b894"];
 
+  // Si está cargando, mostrar un mensaje
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.cargando}>Cargando preguntas...</div>
+      </div>
+    );
+  }
+
+  // Si hay un error, mostrar un mensaje
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.error}>{error}</div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
+      {mensajeError && <div className={styles.error}>{mensajeError}</div>}
       {/* Categorías */}
       <div className={styles.column}>
         <h3>1. Selecciona categorías</h3>

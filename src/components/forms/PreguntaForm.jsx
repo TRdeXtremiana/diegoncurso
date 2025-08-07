@@ -4,7 +4,7 @@ import RespuestasField from "./RespuestasField";
 import styles from "./PreguntaForm.module.css";
 
 
-function PreguntaForm({ onSubmit, modo = "pendiente", autor = "Anónimo" }) {
+function PreguntaForm({ onSubmit, modo = "pendiente", autor = "Anónimo", disabled = false }) {
   const [formData, setFormData] = useState({
     pregunta: "",
     respuestas: ["", "", "", ""],
@@ -124,7 +124,7 @@ function PreguntaForm({ onSubmit, modo = "pendiente", autor = "Anónimo" }) {
     />
   </label>
 
-  <button className={styles.button} type="submit">
+  <button className={styles.button} type="submit" disabled={disabled}>
     {modo === "directo" ? "✅ Añadir pregunta" : "➕ Enviar pregunta"}
   </button>
 </form>

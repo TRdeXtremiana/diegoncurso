@@ -1,8 +1,12 @@
 import { useState } from "react";
 import styles from "./FormularioComunidad.module.css";
 import categorias from "../data/categorias";
+import { usePreguntasContext } from "../context/PreguntasContext";
 
 function FormularioComunidad({ onClose }) {
+  const { enviarPregunta } = usePreguntasContext();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     pregunta: "",
     respuestas: ["", "", "", ""],
@@ -30,22 +34,40 @@ function FormularioComunidad({ onClose }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Pregunta enviada:", formData);
-    alert("Pregunta enviada (pendiente de revisión).");
-
-    setFormData({
-      pregunta: "",
-      respuestas: ["", "", "", ""],
-      correcta: 0,
-      categoria: "",
-      etiqueta: "",
-      explicacion: "",
-      autor: "",
-    });
-
-    onClose();
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Enviar la pregunta al servidor
+      await enviarPregunta({
+        ...formData,
+        estado: 'pendiente'
+      });
+      
+      // Resetear el formulario
+      setFormData({
+        pregunta: "",
+        respuestas: ["", "", "", ""],
+        correcta: 0,
+        categoria: "",
+        etiqueta: "",
+        explicacion: "",
+        autor: "",
+      });
+      
+      // Mostrar mensaje de éxito
+      alert("¡Pregunta enviada correctamente! Está pendiente de revisión.");
+      
+      // Cerrar el formulario
+      onClose();
+    } catch (err) {
+      console.error("Error al enviar la pregunta:", err);
+      setError("Error al enviar la pregunta. Por favor, intenta de nuevo.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -149,8 +171,10 @@ function FormularioComunidad({ onClose }) {
         />
       </label>
 
-      <button className={styles.button} type="submit">
-        Enviar pregunta
+      {error && <div className={styles.error}>{error}</div>}
+      
+      <button className={styles.button} type="submit" disabled={loading}>
+        {loading ? "Enviando..." : "Enviar pregunta"}
       </button>
     </form>
   );

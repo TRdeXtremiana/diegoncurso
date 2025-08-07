@@ -23,7 +23,11 @@ function Header() {
 
         {/* Centro */}
         <div className={styles.center}>
-          {usuario && <span className={styles.welcome}>Hola, {usuario.nombre}</span>}
+          {usuario && (
+            <a href="http://www.diegoncurso.es/admin" className={styles.welcome}>
+              Hola, {usuario.nombre}
+            </a>
+          )}
         </div>
 
         {/* Derecha */}

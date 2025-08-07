@@ -99,6 +99,32 @@
   color: var(--morado);
 }
 
+/* Estados de carga y error */
+.cargando {
+  font-size: 18px;
+  color: var(--morado);
+  text-align: center;
+  padding: 40px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  width: 80%;
+  margin: 40px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+  font-size: 18px;
+  color: #e74c3c;
+  text-align: center;
+  padding: 40px;
+  background: #fff5f5;
+  border-radius: 12px;
+  width: 80%;
+  margin: 40px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e74c3c;
+}
+
 /* Botones */
 .botonAccion {
   background: var(--morado);
