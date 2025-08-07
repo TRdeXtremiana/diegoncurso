@@ -35,7 +35,7 @@ return (
         <p className={styles.streamTitle}>Mira el directo en tiempo real 🎥</p>
         <iframe
           className={styles.stream}
-          src="https://player.twitch.tv/?channel=don_diegons&parent=diegoncurso.es"
+          src="https://player.twitch.tv/?channel=don_diegons&parent=diegoncurso.es&parent=localhost"
           allowFullScreen={true}
           title="Twitch stream de don_diegons"
         ></iframe>

@@ -3,7 +3,7 @@ import { logError } from '../utils/debug';
 // Servicio para manejar las peticiones AJAX a la API
 
 // URL base de la API
-const API_URL = 'https://qans224.diegoncurso.es/api';
+const API_URL = 'http://localhost/diegoncurso/htdocs/backend';
 
 // Función genérica para realizar peticiones fetch
 const fetchData = async (endpoint, options = {}) => {

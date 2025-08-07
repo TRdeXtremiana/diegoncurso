@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./FormularioComunidad.module.css";
-import categorias from "../data/categorias";
+import { categoriasService } from "../services/api";
 import { usePreguntasContext } from "../context/PreguntasContext";
 
 function FormularioComunidad({ onClose }) {
   const { enviarPregunta } = usePreguntasContext();
+  const [categorias, setCategorias] = useState({});
+  const [loadingCategorias, setLoadingCategorias] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
@@ -16,6 +18,27 @@ function FormularioComunidad({ onClose }) {
     explicacion: "",
     autor: "",
   });
+
+  useEffect(() => {
+    const cargarCategorias = async () => {
+      try {
+        const categoriasData = await categoriasService.getAllWithTags();
+        setCategorias(categoriasData);
+      } catch (error) {
+        console.error('Error al cargar categorías:', error);
+        // Fallback a categorías por defecto
+        setCategorias({
+          "Videojuegos": ["Pokémon", "The Legend of Zelda", "Kingdom Hearts", "Mario Bros"],
+          "Cine": ["Acción", "Comedia", "Drama", "Animación"],
+          "Deportes": ["Fútbol", "Baloncesto", "Tenis", "Fórmula 1"],
+          "Música": ["Pop", "Rock", "Reggaeton", "Indie"]
+        });
+      } finally {
+        setLoadingCategorias(false);
+      }
+    };
+    cargarCategorias();
+  }, []);
 
   const handleRespuestaChange = (index, value) => {
     const nuevasRespuestas = [...formData.respuestas];

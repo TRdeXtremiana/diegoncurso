@@ -1,14 +1,37 @@
-import { useState } from "react";
-import categorias from "../../data/categorias";
+import { useState, useEffect } from "react";
+import { categoriasService } from "../../services/api";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import styles from "./ConcursoSetup.module.css";
 import { usePreguntas } from "../../context/PreguntasContext";
 
 function ConcursoSetup({ onIniciar }) {
   const { preguntas, loading, error } = usePreguntas();
+  const [categorias, setCategorias] = useState({});
+  const [loadingCategorias, setLoadingCategorias] = useState(true);
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
   const [etiquetasSeleccionadas, setEtiquetasSeleccionadas] = useState([]);
   const [mensajeError, setMensajeError] = useState("");
+
+  useEffect(() => {
+    const cargarCategorias = async () => {
+      try {
+        const categoriasData = await categoriasService.getAllWithTags();
+        setCategorias(categoriasData);
+      } catch (error) {
+        console.error('Error al cargar categorías:', error);
+        // Fallback a categorías por defecto
+        setCategorias({
+          "Videojuegos": ["Pokémon", "The Legend of Zelda", "Kingdom Hearts", "Mario Bros"],
+          "Cine": ["Acción", "Comedia", "Drama", "Animación"],
+          "Deportes": ["Fútbol", "Baloncesto", "Tenis", "Fórmula 1"],
+          "Música": ["Pop", "Rock", "Reggaeton", "Indie"]
+        });
+      } finally {
+        setLoadingCategorias(false);
+      }
+    };
+    cargarCategorias();
+  }, []);
 
   const toggleCategoria = (categoria) => {
     setCategoriasSeleccionadas((prev) =>
