@@ -11,6 +11,7 @@ function UsuariosPendientes() {
     setUsuarios(actualizados);
   };
 
+  
   const rechazar = (id) => {
     const actualizados = usuarios.filter((u) => u.id !== id);
     setUsuarios(actualizados);
