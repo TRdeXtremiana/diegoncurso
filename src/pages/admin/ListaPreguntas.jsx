@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./ListaPreguntas.module.css"; // puedes crearlo o quitarlo
+// import styles from "./ListaPreguntas.module.css"; // puedes crearlo o quitarlo
 // import Loader from "../../components/Loader"; // opcional si tienes uno
 
 function ListaPreguntas() {
