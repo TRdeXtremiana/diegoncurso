@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 // import styles from "./ListaPreguntas.module.css"; // puedes crearlo o quitarlo
 // import Loader from "../../components/Loader"; // opcional si tienes uno
 
 function ListaPreguntas() {
-    const [preguntas, setPreguntas] = useState([]);
-    const navigate = useNavigate();
+    // const [preguntas, setPreguntas] = useState([]);
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch("http://www.diegoncurso.es/backend/admin/get_preguntas.php")
-            .then((res) => res.json())
-            .then((data) => setPreguntas(data))
-            .catch((err) => console.error("Error cargando preguntas:", err));
-    }, []);
+    // useEffect(() => {
+    //     fetch("http://localhost/backend/preguntas.php")
+    //         .then((res) => res.json())
+    //         .then((data) => setPreguntas(data))
+    //         .catch((err) => console.error("Error cargando preguntas:", err));
+    // }, []);
 
-    const handleEditar = (id) => {
-        navigate(`/admin/editar/${id}`);
-    };
+    // const handleEditar = (id) => {
+    //     navigate(`/admin/editar/${id}`);
+    // };
 
     return (
         <div style={{ padding: "2rem" }}>
@@ -31,7 +31,7 @@ function ListaPreguntas() {
                     </tr>
                 </thead>
                 <tbody>
-                    {preguntas.map((p) => (
+                    {/* {preguntas.map((p) => (
                         <tr key={p.id}>
                             <td>{p.pregunta}</td>
                             <td>{p.respuesta_correcta}</td>
@@ -39,7 +39,7 @@ function ListaPreguntas() {
                                 <button onClick={() => handleEditar(p.id)}>✏️ Editar</button>
                             </td>
                         </tr>
-                    ))}
+                    ))} */}
                 </tbody>
             </table>
         </div>
