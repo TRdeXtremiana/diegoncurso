@@ -9,7 +9,7 @@ const API_URL = 'http://localhost/diegoncurso/htdocs/backend';
 const fetchData = async (endpoint, options = {}) => {
   try {
     // Importar utilidades de red
-    const { handleHttpResponse, retryFetch, getNetworkErrorMessage } = await import('../utils/networkUtils');
+    const { handleHttpResponse, retryFetch } = await import('../utils/networkUtils');
     
     // Usar la función de reintento para manejar fallos temporales de red
     const fetchWithRetry = () => fetch(`${API_URL}/${endpoint}`, {
